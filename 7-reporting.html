@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NDHS Show Control - Panel 5 (Reporting)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand-section"><h1>NOTRE DAME SHOW REPORTING</h1></div>
+    <nav class="nav-buttons">
+      <a href="3-home.html" class="nav-btn back-btn">⬅ BACK (HOME)</a>
+      <a href="4-audio.html" class="nav-btn">🔊 AUDIO</a>
+      <a href="5-lighting.html" class="nav-btn">💡 LIGHTING</a>
+      <a href="6-video.html" class="nav-btn">📹 VIDEO</a>
+      <a href="7-reporting.html" class="nav-btn active">📊 REPORTING</a>
+      <a href="8-services.html" class="nav-btn">⚙️ SERVICES</a>
+      <a href="9-settings.html" class="nav-btn">🔧 SETTINGS</a>
+    </nav>
+  </header>
+  <main class="viewport">
+    <div class="grid-2x2">
+      <div class="card">
+        <div class="card-title">Production Timers</div>
+        <div style="font-family:monospace; font-size:1.1rem; line-height:1.8;">
+          <div>House Open: 18:30:00</div>
+          <div>Curtain Up: 19:02:15</div>
+          <div>Act 1 Duration: 01:14:22</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Quick Log Incident Entry</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+          <button class="btn-action" style="background:#7f8c8d;">+ Audio Note</button>
+          <button class="btn-action" style="background:#7f8c8d;">+ Light Note</button>
+          <button class="btn-action" style="background:#7f8c8d;">+ Timing Delay</button>
+          <button class="btn-action" style="background:#c0392b;">+ Tech Issue</button>
+        </div>
+      </div>
+      <div class="card" style="grid-column: span 2;">
+        <div class="card-title">Export Options</div>
+        <button class="btn-action" style="background:var(--nd-green);">GENERATE & EMAIL STAGE MANAGEMENT REPORT</button>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
