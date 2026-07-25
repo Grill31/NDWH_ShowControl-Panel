@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NDHS Show Control - Panel 3 (Lighting)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand-section"><h1>NOTRE DAME LIGHTING CONTROL</h1></div>
+    <nav class="nav-buttons">
+      <a href="3-home.html" class="nav-btn back-btn">⬅ BACK (HOME)</a>
+      <a href="4-audio.html" class="nav-btn">🔊 AUDIO</a>
+      <a href="5-lighting.html" class="nav-btn active">💡 LIGHTING</a>
+      <a href="6-video.html" class="nav-btn">📹 VIDEO</a>
+      <a href="7-reporting.html" class="nav-btn">📊 REPORTING</a>
+      <a href="8-services.html" class="nav-btn">⚙️ SERVICES</a>
+      <a href="9-settings.html" class="nav-btn">🔧 SETTINGS</a>
+    </nav>
+  </header>
+  <main class="viewport">
+    <div class="grid-2x2">
+      <div class="card">
+        <div class="card-title">EOS Console Cue Sync</div>
+        <p style="font-size:0.9rem; margin-bottom:10px;">Connected to ETC EOS Family System 🟢</p>
+        <div style="display:flex; gap:10px;">
+          <button class="btn-action" style="flex:1; background:#27ae60;">EOS GO</button>
+          <button class="btn-warning" style="flex:1;">EOS STOP</button>
+          <button class="btn-action" style="flex:1; background:#2980b9;">EOS BACK</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Lighting Work Presets</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <button class="btn-action">Work Lights 100%</button>
+          <button class="btn-action">Work Lights OFF</button>
+          <button class="btn-action" style="background:#d35400;">Blue Stage Lights</button>
+          <button class="btn-danger">DEAD BLACK OUT (DBO)</button>
+        </div>
+      </div>
+      <div class="card" style="grid-column: span 2;">
+        <div class="card-title">House Light Master Override</div>
+        <div style="display:flex; gap:15px;">
+          <button class="btn-action" style="flex:1;">House 100% (Full)</button>
+          <button class="btn-action" style="flex:1; background:#f39c12;">House 30% (Preshow)</button>
+          <button class="btn-action" style="flex:1; background:#2c3e50;">House OFF (Show Mode)</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
