@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NDHS Show Control - Settings & Portals</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand-section"><h1>NOTRE DAME SYSTEM SETTINGS & PORTALS</h1></div>
+    <nav class="nav-buttons">
+      <a href="3-home.html" class="nav-btn back-btn">⬅ BACK (HOME)</a>
+      <a href="4-audio.html" class="nav-btn">🔊 AUDIO</a>
+      <a href="5-lighting.html" class="nav-btn">💡 LIGHTING</a>
+      <a href="6-video.html" class="nav-btn">📹 VIDEO</a>
+      <a href="7-reporting.html" class="nav-btn">📊 REPORTING</a>
+      <a href="8-services.html" class="nav-btn">⚙️ SERVICES</a>
+      <a href="9-settings.html" class="nav-btn active">🔧 SETTINGS</a>
+    </nav>
+  </header>
+
+  <main class="viewport">
+    <div class="card" style="margin-bottom: 15px;">
+      <div class="card-title">Local Equipment Hardware Web Portals (LAN)</div>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">Click any portal to open the local web UI directly (Replace sample IP addresses with your actual local static IPs):</p>
+      
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;">
+        <!-- Paradigm -->
+        <a href="http://192.168.1.50" target="_blank" class="btn-action" style="text-decoration:none; background:#2c3e50;">
+          🏛️ Paradigm Web
+        </a>
+        
+        <!-- ClickShare -->
+        <a href="http://192.168.1.60" target="_blank" class="btn-action" style="text-decoration:none; background:#2c3e50;">
+          📺 ClickShare Hub
+        </a>
+
+        <!-- Epson Projector Remote 1 -->
+        <a href="http://192.168.1.71" target="_blank" class="btn-action" style="text-decoration:none; background:#34495e;">
+          📹 Epson Proj 1 Remote
+        </a>
+
+        <!-- Epson Projector Remote 2 -->
+        <a href="http://192.168.1.72" target="_blank" class="btn-action" style="text-decoration:none; background:#34495e;">
+          📹 Epson Proj 2 Remote
+        </a>
+
+        <!-- Epson Projector Panel 1 -->
+        <a href="http://192.168.1.73" target="_blank" class="btn-action" style="text-decoration:none; background:#34495e;">
+          🎛️ Epson Proj 1 Panel
+        </a>
+
+        <!-- Epson Projector Panel 2 -->
+        <a href="http://192.168.1.74" target="_blank" class="btn-action" style="text-decoration:none; background:#34495e;">
+          🎛️ Epson Proj 2 Panel
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Console Configuration</div>
+      <p style="font-size:0.85rem; color:var(--text-muted);">Notre Dame High School Auditorium Tech Booth Control Interface v2.4</p>
+    </div>
+  </main>
+</body>
+</html>
