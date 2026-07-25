@@ -4,6 +4,27 @@
   <meta charset="UTF-8">
   <title>NDHS Show Control - Panel 1 (HOME)</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Adjust grid layout: Left 35%, Center 35%, Right 30% */
+    .grid-home {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 12px;
+      height: calc(100vh - 80px);
+    }
+    .sys-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-family: monospace;
+      font-size: 0.85rem;
+    }
+    .status-active {
+      background: var(--nd-gold, #f1c40f) !important;
+      color: #000 !important;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 <header class="top-bar">
@@ -12,10 +33,13 @@
     <img src="Interlocking ND.PNG" alt="ND Logo" height="36" style="margin-right: 12px;">
     <h1>NOTRE DAME SHOW CONTROL</h1>
   </div>
+  
+  <!-- REAL-TIME CLOCK AND TIMECODE -->
   <div class="sys-info">
-    <span>TOD: 11:21:51</span>
-    <span style="color: var(--nd-gold);">SMPTE: 01:22:00.767</span>
+    <span id="live-tod">TOD: 00/00/0000 00:00:00.000</span>
+    <span id="live-smpte" style="color: var(--nd-gold);">TIMECODE: 01:22:00.767</span>
   </div>
+
   <nav class="nav-buttons">
     <a href="3-home.html" class="nav-btn back-btn">⬅ BACK (HOME)</a>
     <a href="4-audio.html" class="nav-btn">🔊 AUDIO</a>
@@ -27,85 +51,187 @@
   </nav>
 </header>
 
-
-  <main class="viewport">
-    <div class="grid-3col">
-      <!-- LEFT COLUMN: Utility & Preshow -->
-      <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div class="card">
-          <div class="card-title">Utility Cues</div>
-          <button class="btn-action" style="margin-bottom: 8px;">Top of Day Start Up</button>
+<main class="viewport">
+  <div class="grid-home">
+    
+    <!-- LEFT COLUMN: Utility Cues, Pre-Show Moments & Global Cues (PRIMARY FOCUS) -->
+    <div style="display: flex; flex-direction: column; gap: 10px; height: 100%;">
+      
+      <!-- UTILITY CUES -->
+      <div class="card">
+        <div class="card-title">Utility Cues</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px;">
+          <button class="btn-action">Top of Day Start Up</button>
           <button class="btn-action" style="background: #34495e;">EOD Shutdown</button>
         </div>
-        <div class="card" style="flex:1;">
-          <div class="card-title">Show Mode & Pre-Show</div>
-          <button class="btn-action" style="background:#27ae60; margin-bottom: 8px;">Start Pre-Show Moments</button>
-          <button class="btn-danger" style="margin-bottom: 12px;">Stop Pre-Show Moments</button>
-          <div style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">Preshow Moments Playing</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+          <button class="btn-action" style="background: #d35400;">Test/Show Mode Select</button>
+          <button class="btn-action" style="background: #2980b9;">SFX Pre-Show Check</button>
         </div>
-        <div class="card">
-          <div class="card-title">Global Main Cues</div>
-          <button class="btn-action" style="background:#27ae60; margin-bottom: 8px;">Start Main Show</button>
-          <button class="btn-danger">Stop Main Show</button>
-        </div>
+        <button class="btn-action" id="smpte-mute-btn" style="background: #7f8c8d; margin-top: 6px; width: 100%;" onclick="toggleSmpteMute()">SMPTE Mute/Unmute</button>
       </div>
 
-      <!-- CENTER COLUMN: Pick-Up Points -->
+      <!-- PRE-SHOW MOMENTS CUES -->
+      <div class="card" style="flex: 1;">
+        <div class="card-title">Pre-Show Moments Cues</div>
+        <button class="btn-action" style="background:#27ae60; margin-bottom: 8px; width: 100%;">Start Pre-Show Moments</button>
+        <button class="btn-danger" style="margin-bottom: 12px; width: 100%;">Stop Pre-Show Moments</button>
+        <div style="font-size: 0.85rem; color: var(--text-muted); text-align: center;">Preshow Moments Playing</div>
+      </div>
+
+      <!-- GLOBAL MAIN SHOW CUES -->
       <div class="card">
-        <div class="card-title">Audio Controls: Show Pick-Up Points</div>
-        <div style="overflow-y: auto; flex:1;">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Track / Cue Name</th>
-                <th>SMPTE Start</th>
-                <th>Track Time</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>1 - First Day of School</td><td>01:01:19</td><td>00:01:39</td></tr>
-              <tr><td>2 - Big Blue World</td><td>01:03:27</td><td>00:03:47</td></tr>
-              <tr><td>3 - Abduction</td><td>01:05:00</td><td>00:05:20</td></tr>
-              <tr><td>4 - Dory's Ditty</td><td>01:05:50</td><td>00:06:10</td></tr>
-              <tr><td>4.5 - Fish are Friends</td><td>01:06:52</td><td>00:07:12</td></tr>
-              <tr><td>5 - Tank Gang</td><td>01:10:04</td><td>00:10:24</td></tr>
-              <tr><td>6 - Just Keep Swimming</td><td>01:12:09</td><td>00:12:29</td></tr>
-              <tr><td>7 - Not My Daddy</td><td>01:15:18</td><td>00:15:38</td></tr>
-              <tr><td>8 - Go With The Flow</td><td>01:15:54</td><td>00:16:14</td></tr>
-              <tr><td>9 - Gossip</td><td>01:19:32</td><td>00:19:52</td></tr>
-              <tr><td>10 - Reunion</td><td>01:21:01</td><td>00:21:21</td></tr>
-              <tr><td>11 - Epilogue</td><td>01:22:31</td><td>00:22:51</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <div class="card-title">Global Main Show Cues</div>
+        <button class="btn-action" style="background:#27ae60; margin-bottom: 8px; width: 100%;">Start Main Show</button>
+        <button class="btn-danger" style="width: 100%;">Stop Main Show</button>
       </div>
 
-      <!-- RIGHT COLUMN: Cue Trackers -->
-      <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div class="card" style="flex:1;">
-          <div class="card-title">Pre-Show Cue Tracker</div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; overflow-y: auto;">
-            <button class="nav-btn">Moment 1</button>
-            <button class="nav-btn">Moment 2</button>
-            <button class="nav-btn">Moment 3</button>
-            <button class="nav-btn">Moment 4</button>
-            <button class="nav-btn">Moment 5</button>
-            <button class="nav-btn">Moment 6</button>
-          </div>
+    </div>
+
+    <!-- CENTER COLUMN: Compact Audio Pick-Up Points -->
+    <div class="card" style="display: flex; flex-direction: column; height: 100%;">
+      <div class="card-title">Audio Controls: Pick-Up Points</div>
+      <div style="overflow-y: auto; flex: 1;">
+        <table class="data-table" style="font-size: 0.8rem;">
+          <thead>
+            <tr>
+              <th>Track / Cue Name</th>
+              <th>SMPTE Start</th>
+              <th>Track Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1 - First Day of School</td><td>01:01:19</td><td>00:01:39</td></tr>
+            <tr><td>2 - Big Blue World</td><td>01:03:27</td><td>00:03:47</td></tr>
+            <tr><td>3 - Abduction</td><td>01:05:00</td><td>00:05:20</td></tr>
+            <tr><td>4 - Dory's Ditty</td><td>01:05:50</td><td>00:06:10</td></tr>
+            <tr><td>4.5 - Fish are Friends</td><td>01:06:52</td><td>00:07:12</td></tr>
+            <tr><td>5 - Tank Gang</td><td>01:10:04</td><td>00:10:24</td></tr>
+            <tr><td>6 - Just Keep Swimming</td><td>01:12:09</td><td>00:12:29</td></tr>
+            <tr><td>7 - Not My Daddy</td><td>01:15:18</td><td>00:15:38</td></tr>
+            <tr><td>8 - Go With The Flow</td><td>01:15:54</td><td>00:16:14</td></tr>
+            <tr><td>9 - Gossip</td><td>01:19:32</td><td>00:19:52</td></tr>
+            <tr><td>10 - Reunion</td><td>01:21:01</td><td>00:21:21</td></tr>
+            <tr><td>11 - Epilogue</td><td>01:22:31</td><td>00:22:51</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: Cue Trackers -->
+    <div style="display: flex; flex-direction: column; gap: 10px; height: 100%;">
+      <div class="card" style="flex: 1;">
+        <div class="card-title">Pre-Show Cue Tracker</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; overflow-y: auto;">
+          <button class="nav-btn">Moment 1</button>
+          <button class="nav-btn">Moment 2</button>
+          <button class="nav-btn">Moment 3</button>
+          <button class="nav-btn">Moment 4</button>
+          <button class="nav-btn">Moment 5</button>
+          <button class="nav-btn">Moment 6</button>
         </div>
-        <div class="card" style="flex:1;">
-          <div class="card-title">HMC Show Cue Tracker</div>
-          <div style="font-family: monospace; font-size: 0.8rem; overflow-y: auto;">
-            <div>Cue 1 - Preset (T.O.S.)</div>
-            <div>Cue 2 - Prologue</div>
-            <div style="color: var(--nd-gold);">► Cue 3 - RRR (ACTIVE)</div>
-            <div>Cue 4 - Keyhole</div>
-            <div>Cue 5 - BBW</div>
-            <div>Cue 6 - Dory Ditty</div>
-          </div>
+      </div>
+      
+      <div class="card" style="flex: 1;">
+        <div class="card-title">HMC Show Cue Tracker</div>
+        <div style="font-family: monospace; font-size: 0.8rem; overflow-y: auto;">
+          <div>Cue 1 - Preset (T.O.S.)</div>
+          <div>Cue 2 - Prologue</div>
+          <div style="color: var(--nd-gold);">► Cue 3 - RRR (ACTIVE)</div>
+          <div>Cue 4 - Keyhole</div>
+          <div>Cue 5 - BBW</div>
+          <div>Cue 6 - Dory Ditty</div>
         </div>
       </div>
     </div>
-  </main>
+
+  </div>
+</main>
+
+<script>
+  // 1. LIVE TIME OF DAY (TOD) WITH MILLISECONDS
+  function updateTime() {
+    const now = new Date();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const dd = String(now.getDate()).padStart(2, '0');
+    const yyyy = now.getFullYear();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const min = String(now.getMinutes()).padStart(2, '0');
+    const ss = String(now.getSeconds()).padStart(2, '0');
+    const mss = String(now.getMilliseconds()).padStart(3, '0');
+
+    document.getElementById('live-tod').innerText = 
+      `TOD: ${mm}/${dd}/${yyyy} ${hh}:${min}:${ss}.${mss}`;
+  }
+  setInterval(updateTime, 10); // Refresh every 10ms for smooth ms readout
+
+  // 2. TIMECODE (IP / WEBSOCKET / MIDI BACKEND READY)
+  let smpteMuted = false;
+  let ws;
+
+  function connectTimecodeServer() {
+    // Replace with your local network MIDI/SMPTE bridge IP address (e.g. QLab or rtpMIDI bridge)
+    const TIMECODE_SERVER_IP = "ws://192.168.1.50:8080"; 
+
+    try {
+      ws = new WebSocket(TIMECODE_SERVER_IP);
+
+      ws.onmessage = function(event) {
+        if (!smpteMuted) {
+          // Expecting incoming timecode data string like "01:22:00.767"
+          document.getElementById('live-smpte').innerText = `TIMECODE: ${event.data}`;
+        }
+      };
+
+      ws.onerror = function() {
+        console.warn("Timecode server connection failed. Running internal TC simulation.");
+      };
+    } catch (e) {
+      console.warn("WebSocket IP unavailable, using fallback timer.");
+    }
+  }
+
+  // Fallback simulator running if no IP timecode stream is currently connected
+  let simMs = 0, simSec = 0, simMin = 22, simHrs = 1;
+  setInterval(() => {
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+      if (!smpteMuted) {
+        simMs += 33; // ~30fps frame time
+        if (simMs >= 1000) { simMs = 0; simSec++; }
+        if (simSec >= 60) { simSec = 0; simMin++; }
+        if (simMin >= 60) { simMin = 0; simHrs++; }
+
+        const h = String(simHrs).padStart(2, '0');
+        const m = String(simMin).padStart(2, '0');
+        const s = String(simSec).padStart(2, '0');
+        const ms = String(simMs).padStart(3, '0');
+
+        document.getElementById('live-smpte').innerText = `TIMECODE: ${h}:${m}:${s}.${ms}`;
+      }
+    }
+  }, 33);
+
+  // Mute / Unmute Button Handler
+  function toggleSmpteMute() {
+    smpteMuted = !smpteMuted;
+    const btn = document.getElementById('smpte-mute-btn');
+    const tcDisplay = document.getElementById('live-smpte');
+
+    if (smpteMuted) {
+      btn.innerText = "SMPTE UNMUTE";
+      btn.style.background = "#c0392b";
+      tcDisplay.innerText = "TIMECODE: [MUTED]";
+      tcDisplay.style.color = "#7f8c8d";
+    } else {
+      btn.innerText = "SMPTE MUTE";
+      btn.style.background = "#7f8c8d";
+      tcDisplay.style.color = "var(--nd-gold)";
+    }
+  }
+
+  // Initialize
+  connectTimecodeServer();
+</script>
+
 </body>
 </html>
