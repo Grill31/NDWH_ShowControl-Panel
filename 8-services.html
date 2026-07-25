@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NDHS Show Control - Panel 6 (Services)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand-section"><h1>NOTRE DAME SERVICES & HARDWARE</h1></div>
+    <nav class="nav-buttons">
+      <a href="3-home.html" class="nav-btn back-btn">⬅ BACK (HOME)</a>
+      <a href="4-audio.html" class="nav-btn">🔊 AUDIO</a>
+      <a href="5-lighting.html" class="nav-btn">💡 LIGHTING</a>
+      <a href="6-video.html" class="nav-btn">📹 VIDEO</a>
+      <a href="7-reporting.html" class="nav-btn">📊 REPORTING</a>
+      <a href="8-services.html" class="nav-btn active">⚙️ SERVICES</a>
+      <a href="9-settings.html" class="nav-btn">🔧 SETTINGS</a>
+    </nav>
+  </header>
+  <main class="viewport">
+    <div class="grid-2x2">
+      <div class="card">
+        <div class="card-title">Rack Power Controls</div>
+        <button class="btn-action" style="margin-bottom:10px;">POWER ON AUDIO AMPS</button>
+        <button class="btn-danger">POWER OFF AUDIO AMPS</button>
+      </div>
+      <div class="card">
+        <div class="card-title">SMPTE Subsystem Controls</div>
+        <button class="btn-action" style="margin-bottom:8px;">ENABLE ALL SHOW SMPTE</button>
+        <button class="btn-danger">DISABLE ALL SHOW SMPTE</button>
+      </div>
+      <div class="card" style="grid-column: span 2;">
+        <div class="card-title">System Heartbeat Status</div>
+        <div style="font-family:monospace; font-size:0.9rem; line-height: 1.6;">
+          <div>🟢 Dante Audio Bus (192.168.1.101) - ONLINE</div>
+          <div>🟢 ETC EOS Console (192.168.1.120) - ONLINE</div>
+          <div>🟢 ClickShare Base (192.168.1.150) - ONLINE</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
