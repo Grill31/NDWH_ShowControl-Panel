@@ -1,0 +1,233 @@
+:root {
+  --nd-green: #006749;
+  --nd-green-dark: #004d36;
+  --nd-gold: #c5b358;
+  --nd-gold-bright: #e6d375;
+  --bg-dark: #0a0d0f;
+  --panel-bg: #13191e;
+  --card-bg: #1a2228;
+  --border-color: #2a3640;
+  --text-light: #f0f4f8;
+  --text-muted: #9ba8b5;
+  --status-green: #20c997;
+  --status-red: #ff4d4d;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* UNIVERSAL HEADER */
+header.top-bar {
+  background-color: var(--panel-bg);
+  border-bottom: 2px solid var(--nd-gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  height: 60px;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-section h1 {
+  font-size: 1.1rem;
+  color: var(--nd-gold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.sys-info {
+  display: flex;
+  gap: 15px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  background: rgba(0,0,0,0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.nav-btn {
+  background: var(--card-bg);
+  color: var(--text-light);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  background: var(--nd-green);
+  border-color: var(--nd-gold);
+  color: #fff;
+}
+
+.nav-btn.back-btn {
+  background: var(--nd-gold);
+  color: #000;
+  border-color: var(--nd-gold-bright);
+}
+
+.nav-btn.back-btn:hover {
+  background: var(--nd-gold-bright);
+}
+
+/* MAIN VIEWPORT */
+main.viewport {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+/* GRID LAYOUTS */
+.grid-2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  height: 100%;
+}
+
+.grid-3col {
+  display: grid;
+  grid-template-columns: 280px 1fr 300px;
+  gap: 12px;
+  height: 100%;
+}
+
+.card {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 0.9rem;
+  color: var(--nd-gold);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+/* UI ELEMENTS */
+.btn-action {
+  background: var(--nd-green);
+  color: #fff;
+  border: 1px solid var(--nd-gold);
+  padding: 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.btn-danger {
+  background: var(--status-red);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-warning {
+  background: #e67e22;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* TABLE STYLING */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.data-table th {
+  background: var(--card-bg);
+  color: var(--nd-gold);
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.data-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border-color);
+  font-family: monospace;
+}
+
+.data-table tr:hover {
+  background: rgba(197, 179, 88, 0.1);
+}
+
+/* CENTERING LAYOUTS (FOR LOGIN & SPLASH) */
+.center-box {
+  max-width: 420px;
+  margin: 80px auto;
+  text-align: center;
+  background: var(--panel-bg);
+  padding: 30px;
+  border-radius: 8px;
+  border: 2px solid var(--nd-gold);
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+  color: var(--nd-gold);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: #fff;
+  border-radius: 4px;
+}
